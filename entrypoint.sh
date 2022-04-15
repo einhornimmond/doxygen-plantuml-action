@@ -34,8 +34,8 @@ apk add $PACKAGES
 
 echo "::notice::You're on the bleeding edge of doxygen-action. To pin this version use: mattnotmitt/doxygen-action@$(doxygen --version)"
 
-# run "regular" doxygen
-doxygen $1
+# run "regular" doxygen but first replace PLANTUML_JAR_PATH config with correct path in docker container
+( cat $1 ; echo "PLANTUML_JAR_PATH=/app/plantuml.jar" ) | doxygen
 
 # if enabled, make latex pdf output
 if [ "$BUILD_LATEX" = true ] ; then
