@@ -37,6 +37,7 @@ echo "::notice::You're on the bleeding edge of doxygen-action. To pin this versi
 # run "regular" doxygen but first replace PLANTUML_JAR_PATH config with correct path in docker container
 echo "PLANTUML_JAR_PATH=/app/plantuml.jar" >> $1
 #( cat $1 ; echo "PLANTUML_JAR_PATH=/app/plantuml.jar" ) | doxygen
+cat $1
 doxygen
 
 # if enabled, make latex pdf output

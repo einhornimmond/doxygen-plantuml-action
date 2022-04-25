@@ -9,7 +9,6 @@ RUN apk add --no-cache openjdk8-jre graphviz ttf-droid ttf-droid-nonlatin curl \
     && curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o /app/plantuml.jar \
     && apk del curl
 
-
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 
