@@ -5,6 +5,7 @@
 # $2 is the directory where doxygen should be executed
 # $3 is a boolean: true -> enable latex generation, false -> skip latex generation
 # $4 is a string with extra alpine packages to be installed (i.e. font-fira-code)
+# $5 is custom doxygen output path
 
 if [ ! -d $2 ]; then
   echo "Path $2 could not be found!"
@@ -34,10 +35,14 @@ apk add $PACKAGES
 
 echo "::notice::You're on the bleeding edge of doxygen-action. To pin this version use: mattnotmitt/doxygen-action@$(doxygen --version)"
 
-# run "regular" doxygen but first replace PLANTUML_JAR_PATH config with correct path in docker container
+# replace PLANTUML_JAR_PATH config with correct path in docker container
 echo "PLANTUML_JAR_PATH=/app/plantuml.jar" >> $1
-#( cat $1 ; echo "PLANTUML_JAR_PATH=/app/plantuml.jar" ) | doxygen
-cat $1
+
+# replace output src 
+if [ ! -z $5 ]; then
+  echo "OUTPUT_DIRECTORY=$5" >> $1
+fi
+# run "regular" doxygen
 doxygen
 
 # if enabled, make latex pdf output
