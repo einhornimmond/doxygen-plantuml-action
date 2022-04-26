@@ -20,6 +20,10 @@ inputs:
     description: 'Extra alpine packages for the build environment'
     required: false
     default: ''
+  custom-output-path:
+    description: 'Custom Doxygen Output Path'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -28,3 +32,4 @@ runs:
     - ${{ inputs.working-directory }}
     - ${{ inputs.enable-latex }}
     - ${{ inputs.additional-packages }}
+    - ${{ inputs.custom-output-path }}
