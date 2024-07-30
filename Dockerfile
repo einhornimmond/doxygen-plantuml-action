@@ -1,10 +1,10 @@
 # Container image that runs your code
 #FROM alpine:edge
-FROM docker.io/alpine:3
+FROM fabric8/java-alpine-openjdk8-jre
 
 ENV PLANTUML_VERSION 1.2021.11
 ENV LANG en_US.UTF-8
-RUN apk add --no-cache openjdk8-jre graphviz ttf-droid ttf-droid-nonlatin curl \
+RUN apk add --no-cache graphviz ttf-droid ttf-droid-nonlatin curl \
     && mkdir /app \
     && curl -L https://sourceforge.net/projects/plantuml/files/plantuml.jar/download -o /app/plantuml.jar \
     && apk del curl
